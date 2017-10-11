@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="DD&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+<meta name="description" content="Leetcode 242. Valid AnagramGiven two strings s and t, write a function to determine if t is an anagram of s. For example,s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false. N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 242">
+<meta property="og:url" content="http://yoursite.com/2017/10/11/242/index.html">
 <meta property="og:site_name" content="DD&#39;s Blog">
+<meta property="og:description" content="Leetcode 242. Valid AnagramGiven two strings s and t, write a function to determine if t is an anagram of s. For example,s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false. N">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-11T12:09:28.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DD&#39;s Blog">
+<meta name="twitter:title" content="Leetcode 242">
+<meta name="twitter:description" content="Leetcode 242. Valid AnagramGiven two strings s and t, write a function to determine if t is an anagram of s. For example,s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false. N">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/09/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/11/242/"/>
 
 
 
 
 
-  <title>归档 | DD's Blog</title>
+  <title>Leetcode 242 | DD's Blog</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,74 +258,149 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 16 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/242/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/30/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Leetcode 242</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-30T16:20:14-04:00"
-              content="2017-09-30" >
-          09-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="Leetcode-242-Valid-Anagram"><a href="#Leetcode-242-Valid-Anagram" class="headerlink" title="Leetcode 242. Valid Anagram"></a>Leetcode 242. Valid Anagram</h1><p>Given two strings <em>s</em> and <em>t</em>, write a function to determine if <em>t</em> is an anagram of <em>s</em>.</p>
+<p>For example,<br><em>s</em> = “anagram”, <em>t</em> = “nagaram”, return true.<br><em>s</em> = “rat”, <em>t</em> = “car”, return false.</p>
+<p><strong>Note:</strong><br>You may assume the string contains only lowercase alphabets.</p>
+<p><strong>Follow up:</strong><br>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Use a map to record the counts for each letter. If all the letters appear in the same counts in two strings, they are valid anagrams. Otherwise, it is not. The time complexity is <em>O(n)</em>, n is the length of the string.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; counts;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : s)</div><div class="line">            counts[c] += <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : t)</div><div class="line">            counts[c] -= <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; p : counts)</div><div class="line">            <span class="keyword">if</span> (p.second != <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/11/138/" rel="next" title="Leetcode 138">
+                <i class="fa fa-chevron-left"></i> Leetcode 138
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/11/238/" rel="prev" title="Leetcode 238">
+                Leetcode 238 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -329,6 +408,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -349,8 +430,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -403,6 +493,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Leetcode-242-Valid-Anagram"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 242. Valid Anagram</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">1.1.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-C"><span class="nav-number">1.2.</span> <span class="nav-text">Solution (C++)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -522,6 +628,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

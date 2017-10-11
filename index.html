@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/238/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shuanglong Zhang">
@@ -288,7 +288,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/02/238/" itemprop="url">Leetcode 238</a></h1>
+                <a class="post-title-link" href="/2017/10/11/3/" itemprop="url">Leetcode 3</a></h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,635 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T10:33:28-04:00">
-                2017-10-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:57:37-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-3-Longest-Substring-Without-Repeating-Characters"><a href="#Leetcode-3-Longest-Substring-Without-Repeating-Characters" class="headerlink" title="Leetcode 3. Longest Substring Without Repeating Characters"></a>Leetcode 3. Longest Substring Without Repeating Characters</h1><p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
+<p><strong>Examples:</strong></p>
+<p>Given <code>&quot;abcabcbb&quot;</code>, the answer is <code>&quot;abc&quot;</code>, which the length is 3.</p>
+<p>Given <code>&quot;bbbbb&quot;</code>, the answer is <code>&quot;b&quot;</code>, with the length of 1.</p>
+<p>Given <code>&quot;pwwkew&quot;</code>, the answer is <code>&quot;wke&quot;</code>, with the length of 3. Note that the answer must be a <strong>substring</strong>, <code>&quot;pwke&quot;</code> is a subsequence and not a substring.</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>A trival idea is to start from each position and expand the substring to right, until it reaches a repeated character. The time complexity is at least <em>O(n<sup>2</sup>)</em>.<br>Think it reversely. For each position, we look <strong>back</strong> to see how far the substring can <strong>start from</strong>. For example, if the current position is <em>i</em>, the furthest start position is either the position this character last appeared, or a position which another character appeared next last time, whichever comes later.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><p>bb<strong>a</strong>cdef<strong>a</strong></p>
+<p>The <code>a</code> can look back to last time <code>a</code> appeared</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h4><p>a<strong>b</strong>bcdef<strong>a</strong></p>
+<p>The <code>a</code> can look back to next last time <code>b</code> appeared<br>The the idea is to use a map recording the last appeared position for each letter. In addition, use a variable to record the latest <strong>next last</strong> position among all the characters. Everytime it looks back to find a possible maximum substring, update the map, the variable and the max length.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; last;  <span class="comment">// map to record the last appeared position, can be replaced with a vector of size 256</span></div><div class="line">        <span class="keyword">int</span> maxlen = <span class="number">0</span>, start = <span class="number">-1</span>;  <span class="comment">// leftmost possible start position</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (last.find(s[i]) != last.end())</div><div class="line">                start = max(start, last[s[i]]);  <span class="comment">// update start if the next last time s[i] appeares to the right of old start</span></div><div class="line">            maxlen = max(maxlen, i - start);  <span class="comment">// update max length</span></div><div class="line">            last[s[i]] = i;  <span class="comment">// update position that this character appeared last time</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxlen;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/445/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/445/" itemprop="url">Leetcode 445</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-445-Add-Two-Numbers-II"><a href="#Leetcode-445-Add-Two-Numbers-II" class="headerlink" title="Leetcode 445. Add Two Numbers II"></a>Leetcode 445. Add Two Numbers II</h1><p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Follow up:</strong><br>What if you cannot modify the input lists? In other words, reversing the lists is not allowed.</p>
+<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: (7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</div><div class="line">Output: 7 -&gt; 8 -&gt; 0 -&gt; 7</div></pre></td></tr></table></figure></p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * struct ListNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     ListNode *next;</span></div><div class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</div><div class="line">        ListNode *r1 = reverse(l1);  <span class="comment">// reverse the link so the add operation can start from low digit to high digit</span></div><div class="line">        ListNode *r2 = reverse(l2);</div><div class="line">        <span class="keyword">return</span> reverse(addList(r1, r2));  <span class="comment">// reverse back the output list</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function">ListNode * <span class="title">reverse</span><span class="params">(ListNode * l)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">if</span> (l == <span class="literal">nullptr</span> || l -&gt; next == <span class="literal">nullptr</span>)</div><div class="line">            <span class="keyword">return</span> l;</div><div class="line">        ListNode * node = l -&gt; next, * rst = reverse(node);  <span class="comment">// recursively reverse a single list</span></div><div class="line">        node -&gt; next = l;</div><div class="line">        l -&gt; next = <span class="literal">nullptr</span>;</div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function">ListNode * <span class="title">addList</span><span class="params">(ListNode * l1, ListNode * l2)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        ListNode * head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);  <span class="comment">// create a dummy node, delete later</span></div><div class="line">        ListNode * prev = head;</div><div class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span> || carry)  <span class="comment">// either list is not exhausted or carry is set</span></div><div class="line">        &#123;</div><div class="line">            ListNode * node = <span class="keyword">new</span> ListNode(<span class="number">0</span>);  <span class="comment">// hold for the current node</span></div><div class="line">            <span class="keyword">if</span> (l1 != <span class="literal">nullptr</span>)</div><div class="line">            &#123;</div><div class="line">                node -&gt; val += l1 -&gt; val;</div><div class="line">                l1 = l1 -&gt; next;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (l2 != <span class="literal">nullptr</span>)</div><div class="line">            &#123;</div><div class="line">                node -&gt; val += l2 -&gt; val;</div><div class="line">                l2 = l2 -&gt; next;</div><div class="line">            &#125;</div><div class="line">            node -&gt; val += carry;  <span class="comment">// counts for carry</span></div><div class="line">            carry = node -&gt; val / <span class="number">10</span>;  <span class="comment">// reset carry</span></div><div class="line">            node -&gt; val %= <span class="number">10</span>;</div><div class="line">            prev -&gt; next = node;</div><div class="line">            prev = node;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode *rst = head -&gt; next;  <span class="comment">// get the real head to return</span></div><div class="line">        <span class="keyword">delete</span>(head);  <span class="comment">// delete the dummy node</span></div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h2><p>It does not allow to modify the input lists. So we may not reverse the list or using exsising nodes from the list. So we use two stacks to record all the nodes for both list. We pop items from the stacks one by one to simulate the back-to-forward process. We also generate nodes ourselves and link them to a list to return.</p>
+<h2 id="Solution-C-1"><a href="#Solution-C-1" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * struct ListNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     ListNode *next;</span></div><div class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</div><div class="line">        <span class="built_in">stack</span>&lt;ListNode *&gt; s1, s2;</div><div class="line">        ListNode * c1 = l1, * c2 = l2;</div><div class="line">        <span class="keyword">while</span> (c1 != <span class="literal">nullptr</span>)</div><div class="line">        &#123;</div><div class="line">            s1.push(c1);</div><div class="line">            c1 = c1 -&gt; next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (c2 != <span class="literal">nullptr</span>)</div><div class="line">        &#123;</div><div class="line">            s2.push(c2);</div><div class="line">            c2 = c2 -&gt; next;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</div><div class="line">        ListNode * curr = <span class="literal">nullptr</span>;</div><div class="line">        <span class="keyword">while</span> (!s1.empty() || !s2.empty() || carry)  <span class="comment">// either list is not exhausted or carry is set</span></div><div class="line">        &#123;</div><div class="line">            ListNode * prev = <span class="keyword">new</span> ListNode(<span class="number">0</span>);  <span class="comment">// hold for new node</span></div><div class="line">            <span class="keyword">if</span> (!s1.empty())</div><div class="line">            &#123;</div><div class="line">                prev -&gt; val += s1.top() -&gt; val;  <span class="comment">// accumulate</span></div><div class="line">                s1.pop();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (!s2.empty())</div><div class="line">            &#123;</div><div class="line">                prev -&gt; val += s2.top() -&gt; val;  <span class="comment">// accumulate</span></div><div class="line">                s2.pop();</div><div class="line">            &#125;</div><div class="line">            prev -&gt; val += carry;  <span class="comment">// also counts for carry</span></div><div class="line">            carry = prev -&gt; val / <span class="number">10</span>;  <span class="comment">// reset carry (0 or 1)</span></div><div class="line">            prev -&gt; val %= <span class="number">10</span>;</div><div class="line">            prev -&gt; next = curr;  <span class="comment">// move forward</span></div><div class="line">            curr = prev;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> curr;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/2/" itemprop="url">Leetcode 2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2-Add-Two-Numbers"><a href="#2-Add-Two-Numbers" class="headerlink" title="2. Add Two Numbers"></a>2. Add Two Numbers</h1><p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Input:</strong> (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br><strong>Output:</strong> 7 -&gt; 0 -&gt; 8</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>From the head to the tail, add one or two numbers and save the result to a new node. If the carry is set, also counts the carry and reset it.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list.</span></div><div class="line"><span class="comment"> * struct ListNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     ListNode *next;</span></div><div class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</div><div class="line">        ListNode * head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">        ListNode * prev = head;</div><div class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span> || carry)</div><div class="line">        &#123;</div><div class="line">            ListNode * node = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">            <span class="keyword">if</span> (l1 != <span class="literal">nullptr</span>)</div><div class="line">            &#123;</div><div class="line">                node -&gt; val += l1 -&gt; val;</div><div class="line">                l1 = l1 -&gt; next;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (l2 != <span class="literal">nullptr</span>)</div><div class="line">            &#123;</div><div class="line">                node -&gt; val += l2 -&gt; val;</div><div class="line">                l2 = l2 -&gt; next;</div><div class="line">            &#125;</div><div class="line">            node -&gt; val += carry;</div><div class="line">            carry = node -&gt; val / <span class="number">10</span>;</div><div class="line">            node -&gt; val %= <span class="number">10</span>;</div><div class="line">            prev -&gt; next = node;</div><div class="line">            prev = node;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        ListNode *rst = head -&gt; next;</div><div class="line">        <span class="keyword">delete</span>(head);</div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/230/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/230/" itemprop="url">Leetcode 230</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-230-Kth-Smallest-Element-in-a-BST"><a href="#Leetcode-230-Kth-Smallest-Element-in-a-BST" class="headerlink" title="Leetcode 230. Kth Smallest Element in a BST"></a>Leetcode 230. Kth Smallest Element in a BST</h1><p>Given a binary search tree, write a function <code>kthSmallest</code> to find the <strong>k</strong>th smallest element in it.</p>
+<p><strong>Note:</strong><br>You may assume k is always valid, 1 ≤ k ≤ BST’s total elements.</p>
+<p><strong>Follow up:</strong><br>What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Inorder traversal on a BST gives a sorted array. Return the kth element of the array.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * struct TreeNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     TreeNode *left;</span></div><div class="line"><span class="comment"> *     TreeNode *right;</span></div><div class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; num;</div><div class="line">        traversal(root, num, k);</div><div class="line">        <span class="keyword">return</span> num[k - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">traversal</span><span class="params">(TreeNode * node, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; num, <span class="keyword">int</span> k)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">if</span> (node &amp;&amp; num.size() &lt; k)</div><div class="line">        &#123;</div><div class="line">            traversal(node -&gt; left, num, k);</div><div class="line">            num.push_back(node -&gt; val);</div><div class="line">            traversal(node -&gt; right, num, k);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h2><p>The thing that prevent us to quick locate the kth smallest element in a BST is that we do not have the knowledge of the tree size. If we do have the knowledge of the size of the left child tree and right child tree, we can quickly know which child tree the kth smallest node is in. We can locate the target node in <em>O(logn)</em> time if we can know the size for each child tree.</p>
+<p>When insert or delete node, keep tracking of the tree size by modifying the size value for each ancestor node. This also takes <em>O(logn)</em> time. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/22/" itemprop="url">Leetcode 22</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-22-Generate-Parentheses"><a href="#Leetcode-22-Generate-Parentheses" class="headerlink" title="Leetcode 22. Generate Parentheses"></a>Leetcode 22. Generate Parentheses</h1><p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
+<p>For example, given n = 3, a solution set is:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &quot;((()))&quot;,</div><div class="line">  &quot;(()())&quot;,</div><div class="line">  &quot;(())()&quot;,</div><div class="line">  &quot;()(())&quot;,</div><div class="line">  &quot;()()()&quot;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>The result can be generated in a recursive way. For the left-most parenthes, it divide the entire string into two parts, the inner and the outter. The combination of all the inner cases and outter cases constructs all the cases.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; generateParenthesis(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; rst;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> rst;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            rst.push_back(<span class="string">"()"</span>);</div><div class="line">            <span class="keyword">return</span> rst;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</div><div class="line">            &#123;</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp1 = generateParenthesis(i);</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp2 = generateParenthesis(n - i - <span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span> (tmp1.size() == <span class="number">0</span>)</div><div class="line">                    tmp1.push_back(<span class="string">""</span>);</div><div class="line">                <span class="keyword">if</span> (tmp2.size() == <span class="number">0</span>)</div><div class="line">                    tmp2.push_back(<span class="string">""</span>);</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> t1 : tmp1)</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> t2 : tmp2)</div><div class="line">                    &#123;</div><div class="line">                        <span class="built_in">string</span> tt = <span class="string">"("</span> + t1 + <span class="string">")"</span> + t2;</div><div class="line">                        rst.push_back(tt);</div><div class="line">                    &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> rst;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Solution-Python"><a href="#Solution-Python" class="headerlink" title="Solution (Python)"></a>Solution (Python)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generateParenthesis</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type n: int</span></div><div class="line"><span class="string">        :rtype: List[str]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            rst = []</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">                t1 = self.generateParenthesis(i)</div><div class="line">                t2 = self.generateParenthesis(n - i - <span class="number">1</span>)</div><div class="line">                <span class="keyword">if</span> len(t1) == <span class="number">0</span>:</div><div class="line">                    t1.append(<span class="string">""</span>)</div><div class="line">                <span class="keyword">if</span> len(t2) == <span class="number">0</span>:</div><div class="line">                    t2.append(<span class="string">""</span>)</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> t1:</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> t2:</div><div class="line">                        rst.append(<span class="string">"("</span> + x + <span class="string">")"</span> + y)</div><div class="line">            <span class="keyword">return</span> rst</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/238/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/238/" itemprop="url">Leetcode 238</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
               </time>
             
 
@@ -346,12 +973,12 @@
 <p><strong>Follow up:</strong><br>Could you solve it with constant space complexity? (Note: The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
 <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>A straightforward approach is to get the production of all the numbers first. Then the result array will be the production divided by the number itself.</p>
 <p>However, it does not allow to use division. So, we turn to use a constructive approach. For each element in the result, it can be constucted with the production of all the numbers at left and the production of all the numbers at right. We need to use two additional array to store this, one from left to right, the other one from right to left.</p>
-<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">		<span class="keyword">auto</span> len = nums.size();</div><div class="line">		<span class="keyword">if</span> (nums.size() &lt; <span class="number">2</span>)</div><div class="line">			<span class="keyword">return</span> nums;</div><div class="line"></div><div class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left2right(len), right2left(len), rst(len);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">			left2right[i] = i &gt; <span class="number">0</span> ? left2right[i - <span class="number">1</span>] * nums[i] : nums[i];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">			right2left[i] = (i != len - <span class="number">1</span>) ? right2left[i + <span class="number">1</span>] * nums[i] : nums[i];</div><div class="line"></div><div class="line">		rst[len - <span class="number">1</span>] = left2right[len - <span class="number">2</span>];</div><div class="line">		rst[<span class="number">0</span>] = right2left[<span class="number">1</span>];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len - <span class="number">1</span>; i++)</div><div class="line">			rst[i] = left2right[i - <span class="number">1</span>] * right2left[i + <span class="number">1</span>];</div><div class="line">		<span class="keyword">return</span> rst;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="Solution-Python"><a href="#Solution-Python" class="headerlink" title="Solution (Python)"></a>Solution (Python)</h2><p>TBD</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">auto</span> len = nums.size();</div><div class="line">        <span class="keyword">if</span> (nums.size() &lt; <span class="number">2</span>)</div><div class="line">            <span class="keyword">return</span> nums;</div><div class="line"></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left2right(len), right2left(len), rst(len);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">            left2right[i] = i &gt; <span class="number">0</span> ? left2right[i - <span class="number">1</span>] * nums[i] : nums[i];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">            right2left[i] = (i != len - <span class="number">1</span>) ? right2left[i + <span class="number">1</span>] * nums[i] : nums[i];</div><div class="line">        </div><div class="line">        rst[len - <span class="number">1</span>] = left2right[len - <span class="number">2</span>];</div><div class="line">        rst[<span class="number">0</span>] = right2left[<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len - <span class="number">1</span>; i++)</div><div class="line">            rst[i] = left2right[i - <span class="number">1</span>] * right2left[i + <span class="number">1</span>];</div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Solution-Python"><a href="#Solution-Python" class="headerlink" title="Solution (Python)"></a>Solution (Python)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">productExceptSelf</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> nums</div><div class="line">        </div><div class="line">        left2right = []</div><div class="line">        right2left = []</div><div class="line">        rst = []</div><div class="line">        <span class="comment"># Calculate left2right prefix production</span></div><div class="line">        production = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</div><div class="line">            left2right.append(n * production)</div><div class="line">            production *= n</div><div class="line"></div><div class="line">        <span class="comment"># Calculate right2left prefix production</span></div><div class="line">        production = <span class="number">1</span></div><div class="line">        nums.reverse()    <span class="comment"># Do it reversely</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</div><div class="line">            right2left.append(n * production)</div><div class="line">            production *= n</div><div class="line">        right2left.reverse()    <span class="comment"># Reverse back</span></div><div class="line"></div><div class="line">        rst.append(right2left[<span class="number">1</span>])</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums) - <span class="number">1</span>):</div><div class="line">            rst.append(left2right[i - <span class="number">1</span>] * right2left[i + <span class="number">1</span>])</div><div class="line">        rst.append(left2right[<span class="number">-2</span>])</div><div class="line">    <span class="keyword">return</span> rst</div></pre></td></tr></table></figure>
 <h2 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h2><p>In the above solution, additional space is used. To eliminate the usage of that, we try to calculate the result without generating those two array. Instead, we do it on-the-fly.</p>
 <p>First, we initialize the result array as all 1s. Then we scan the input array from left to right. We calculate the current production and assign it to the next place in the result array. We do another scan from right to left to do the same thing. In the end, the result array will store the production we need.</p>
-<h2 id="Solution-C-1"><a href="#Solution-C-1" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">		<span class="keyword">auto</span> len = nums.size();</div><div class="line">		<span class="keyword">if</span> (nums.size() &lt; <span class="number">2</span>)</div><div class="line">			<span class="keyword">return</span> nums;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> current = nums[<span class="number">0</span>];</div><div class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rst(len, <span class="number">1</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)</div><div class="line">		&#123;</div><div class="line">			rst[i] *= current;</div><div class="line">			current *= nums[i];</div><div class="line">		&#125;</div><div class="line">		current = nums[len - <span class="number">1</span>];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">		&#123;</div><div class="line">			rst[i] *= current;</div><div class="line">			current *= nums[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> rst;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="Solution-Python-1"><a href="#Solution-Python-1" class="headerlink" title="Solution (Python)"></a>Solution (Python)</h2><p>TBD</p>
+<h2 id="Solution-C-1"><a href="#Solution-C-1" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">auto</span> len = nums.size();</div><div class="line">        <span class="keyword">if</span> (nums.size() &lt; <span class="number">2</span>)</div><div class="line">            <span class="keyword">return</span> nums;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> current = nums[<span class="number">0</span>];</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rst(len, <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)</div><div class="line">        &#123;</div><div class="line">            rst[i] *= current;</div><div class="line">            current *= nums[i];</div><div class="line">        &#125;</div><div class="line">        current = nums[len - <span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">        &#123;</div><div class="line">            rst[i] *= current;</div><div class="line">            current *= nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Solution-Python-1"><a href="#Solution-Python-1" class="headerlink" title="Solution (Python)"></a>Solution (Python)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">productExceptSelf</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> nums</div><div class="line">        rst = []</div><div class="line">        current = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</div><div class="line">            rst.append(current)</div><div class="line">            current *= n</div><div class="line"></div><div class="line">        current = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums) - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</div><div class="line">            rst[i] *= current;</div><div class="line">            current *= nums[i]</div><div class="line">    </div><div class="line">        <span class="keyword">return</span> rst</div></pre></td></tr></table></figure>
 
           
         
@@ -400,7 +1027,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/30/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/242/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shuanglong Zhang">
@@ -419,7 +1046,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/30/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2017/10/11/242/" itemprop="url">Leetcode 242</a></h1>
         
 
         <div class="post-meta">
@@ -431,8 +1058,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-30T16:20:14-04:00">
-                2017-09-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
               </time>
             
 
@@ -471,15 +1098,140 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h1 id="Leetcode-242-Valid-Anagram"><a href="#Leetcode-242-Valid-Anagram" class="headerlink" title="Leetcode 242. Valid Anagram"></a>Leetcode 242. Valid Anagram</h1><p>Given two strings <em>s</em> and <em>t</em>, write a function to determine if <em>t</em> is an anagram of <em>s</em>.</p>
+<p>For example,<br><em>s</em> = “anagram”, <em>t</em> = “nagaram”, return true.<br><em>s</em> = “rat”, <em>t</em> = “car”, return false.</p>
+<p><strong>Note:</strong><br>You may assume the string contains only lowercase alphabets.</p>
+<p><strong>Follow up:</strong><br>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Use a map to record the counts for each letter. If all the letters appear in the same counts in two strings, they are valid anagrams. Otherwise, it is not. The time complexity is <em>O(n)</em>, n is the length of the string.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; counts;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : s)</div><div class="line">            counts[c] += <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; c : t)</div><div class="line">            counts[c] -= <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; p : counts)</div><div class="line">            <span class="keyword">if</span> (p.second != <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/138/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/138/" itemprop="url">Leetcode 138</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-138-Copy-List-with-Random-Pointer"><a href="#Leetcode-138-Copy-List-with-Random-Pointer" class="headerlink" title="Leetcode 138. Copy List with Random Pointer"></a>Leetcode 138. Copy List with Random Pointer</h1><p> A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+<p>Return a deep copy of the list. </p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Deep copy requires to create a new list, with newly created nodes. For the random pointer, we can use a hash to record the mapping between the nodes from old and new list. The first round create the new list and the second round assign the random pointers.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list with a random pointer.</span></div><div class="line"><span class="comment"> * struct RandomListNode &#123;</span></div><div class="line"><span class="comment"> *     int label;</span></div><div class="line"><span class="comment"> *     RandomListNode *next, *random;</span></div><div class="line"><span class="comment"> *     RandomListNode(int x) : label(x), next(NULL), random(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">RandomListNode *<span class="title">copyRandomList</span><span class="params">(RandomListNode *head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</div><div class="line">            <span class="keyword">return</span> head;</div><div class="line">        RandomListNode * copy_head = <span class="keyword">new</span> RandomListNode(head -&gt; label);  <span class="comment">// head of the new list</span></div><div class="line">        </div><div class="line">        <span class="built_in">map</span>&lt;RandomListNode *, RandomListNode *&gt; node2node;  <span class="comment">// Mapping between nodes in two lists</span></div><div class="line">        node2node.insert(make_pair(head, copy_head));</div><div class="line">        </div><div class="line">        RandomListNode * copy_node = copy_head;</div><div class="line">        RandomListNode * node = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (node -&gt; next != <span class="literal">nullptr</span>)</div><div class="line">        &#123;</div><div class="line">            node = node -&gt; next;</div><div class="line">            RandomListNode * new_node = <span class="keyword">new</span> RandomListNode(node -&gt; label);</div><div class="line">            copy_node -&gt; next = new_node;</div><div class="line">            copy_node = copy_node -&gt; next;</div><div class="line">            node2node.insert(make_pair(node, copy_node));</div><div class="line">        &#125;</div><div class="line">        copy_node -&gt; next = <span class="literal">nullptr</span>;</div><div class="line">        </div><div class="line">        copy_node = copy_head;</div><div class="line">        node = head;</div><div class="line">        <span class="keyword">while</span> (node != <span class="literal">nullptr</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (node -&gt; random == <span class="literal">nullptr</span>)</div><div class="line">                copy_node -&gt; random = <span class="literal">nullptr</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                copy_node -&gt; random = node2node[node -&gt; random];</div><div class="line">            node = node -&gt; next;</div><div class="line">            copy_node = copy_node -&gt; next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> copy_head;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h2><p>The previous solution uses a hash, so the extra space used is <em>O(n)</em>. We can reduce the extra space to constant. The idea is to reuse the old list to preserve the ordering of random pointers. It takes three steps:</p>
+<ol>
+<li>Allocate new node and insert it in the old list, follow the corresponding old node.</li>
+<li>Assign the random pointers.</li>
+<li>Extract the new lsit and return.<h2 id="Solution-C-1"><a href="#Solution-C-1" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for singly-linked list with a random pointer.</span></div><div class="line"><span class="comment"> * struct RandomListNode &#123;</span></div><div class="line"><span class="comment"> *     int label;</span></div><div class="line"><span class="comment"> *     RandomListNode *next, *random;</span></div><div class="line"><span class="comment"> *     RandomListNode(int x) : label(x), next(NULL), random(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">RandomListNode *<span class="title">copyRandomList</span><span class="params">(RandomListNode *head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</div><div class="line">            <span class="keyword">return</span> head;</div><div class="line">        </div><div class="line">        RandomListNode * node = head;</div><div class="line">        <span class="keyword">while</span> (node)</div><div class="line">        &#123;</div><div class="line">            RandomListNode * copy_node = <span class="keyword">new</span> RandomListNode(node -&gt; label);</div><div class="line">            copy_node -&gt; next = node -&gt; next;  <span class="comment">// insert new node after the corresponding old node</span></div><div class="line">            node -&gt; next = copy_node;</div><div class="line">            node = copy_node -&gt; next;</div><div class="line">        &#125;</div><div class="line">        node = head;</div><div class="line">        RandomListNode * copy_node;</div><div class="line">        <span class="keyword">while</span> (node)</div><div class="line">        &#123;</div><div class="line">            copy_node = node -&gt; next;</div><div class="line">            <span class="keyword">if</span> (node -&gt; random)  <span class="comment">// assign random node for newly created node</span></div><div class="line">                copy_node -&gt; random = node -&gt; random -&gt; next;</div><div class="line">            node = copy_node -&gt; next;</div><div class="line">        &#125;</div><div class="line">        node = head;</div><div class="line">        RandomListNode * copy_head = node -&gt; next;</div><div class="line">        copy_node = copy_head;</div><div class="line">        <span class="keyword">while</span> (node)  <span class="comment">// separate two lists</span></div><div class="line">        &#123;</div><div class="line">            node -&gt; next = copy_node -&gt; next;</div><div class="line">            node = node -&gt; next;</div><div class="line">            <span class="keyword">if</span> (node)</div><div class="line">            &#123;</div><div class="line">                copy_node -&gt; next = node -&gt; next;</div><div class="line">                copy_node = copy_node -&gt; next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> copy_head;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></li>
+</ol>
 
           
         
@@ -528,7 +1280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/09/Perl-6-教程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/144/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shuanglong Zhang">
@@ -547,7 +1299,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/12/09/Perl-6-教程/" itemprop="url">Perl 6 教程</a></h1>
+                <a class="post-title-link" href="/2017/10/11/144/" itemprop="url">Leetcode 144</a></h1>
         
 
         <div class="post-meta">
@@ -559,8 +1311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-09T20:24:35-05:00">
-                2015-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
               </time>
             
 
@@ -599,59 +1351,135 @@
       
         
           
-            <h1 id="一点点闲话"><a href="#一点点闲话" class="headerlink" title="一点点闲话"></a>一点点闲话</h1><p><img src="https://st.pimg.net/perlweb/images/camel_head.v25e738a.png" alt=""></p>
-<p><a href="https://www.perl.org" target="_blank" rel="external">Perl</a>是一门非常经典的编程语言，广泛用于文本处理，系统维护，网关编程（CGI）等许多领域。但是近年来，Perl的风头渐渐被一些新的语言所盖过，如Python，Javascript，Node.js等等。尤其是Python，这个从一开始就被视为Perl的对手的语言，得到了广泛的认可和青睐。在最新的<a href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html" target="_blank" rel="external">TIOBE</a>编程语言排行榜上，Python已经上升到第四位，超过了PHP，Javascript，仅次于三巨头Java，C，C++。</p>
-<p>目前Perl的稳定版本是2015年6月1日发布的5.22。要知道，Perl 5的第一个版本5.000是在1994年发布的，距今已经超过20年。至此之后，Perl的主版本号就一直停留在5，后续的开发工作也是基于Perl 5编译器的核心，这使得Perl 5编译器的核心变得越来越庞大，越来越复杂。其实，Perl的开发社区很早以前就意识到了这个问题，在2000年的时候，Perl的核心领导者Larry就提出了开发Perl 6的计划。由于种种原因，Perl 6的开发计划进度非常缓慢，过程中遇到了很多困难，发布日期也是一推再推。</p>
-<p>但是，好消息是，尽管困难重重，Perl 6还是要来了。在2015年2月的一次学术会议上，Larry宣布，Perl 6将在2015年的圣诞节<img src="https://perl6advent.files.wordpress.com/2015/11/cropped-camelia-small-santa1.png" alt="">正式发布。10月，Perl 6的<a href="https://perl6.org" target="_blank" rel="external">官方网站</a>也做了一次大的更新，添加了许多有用的资料。现在距离圣诞节还有不到三周的时间，作为一名Perl的粉丝，非常期待Perl 6正式发布后能够一扫近年来的颓势，重新回到大家的视野中。鉴于目前Perl 6的中文资料非常稀少（英文资料也不是很多），准备在此做一个Perl 6的简明教程。无论你之前有没有接触过编程，无论之前有没有接触过Perl，都可以试着读一下本教程。希望大家能够喜欢Perl 6，喜欢我的教程。</p>
-<p>虽然现在Perl 6还没有正式发布，但是我们已经可以用上Perl 6了。早在2010年，Rakudo团队就发布了第一个可用的Perl 6的编译器。在这里要稍微说一下关于Perl 6和他的编译器名称的问题。在Perl 5时代以及更早的时候，Perl既可以指这Perl一门语言，也可以指Perl的编译器。可是在Perl 6的时候，Larry提出我们要让语言本身和他的实现相分离。所以Perl 6指的是这个语言的设计标准，而他的实现（编译器）可以是不同的。类似的例子就如C++。C++是一门语言，但是他可以有不同的编译器，比如VS C++，G++，CLANG等等。而Rakudo就是目前对Perl 6标准支持最完善的一个编译器。当然，要指出的是，这里的编译器和C/C++的编译器还是很不一样的。因为Rakudo并不是将Perl代码编译成机器码，可以在CPU上直接执行，而是转换成一种类似Java Bytecode的中间代码。这种中间代码可以在虚拟机上运行。其中，JVM就是被支持的一种虚拟机。除了JVM，还有<a href="http://www.moarvm.org" target="_blank" rel="external">MoarVM</a>，这是比JVM更好的选择。除了这两个以外，还有一个叫Parrot，曾经是Perl 6主要支持的。后来因为一些变故和MoarVM的崛起，Perl 6转向了主要支持MoarVM，这些就不展开啦。总而言之，Perl 6完全摆脱了Perl 5的编译器，采用的是一个全新的，没有历史包袱的架构。这同时也带来了一些问题，主要有两个。一是Perl 6并不完全向下兼容Perl 5的语法。对于以前的Perl 5的程序，不能保证他们可以正确地被编译，可能出现编译错误。对于这个问题，在Python 2向Python 3转变的过程中也遇到过。二是Perl 6由于采用了先编译到中间代码，再通过虚拟机执行的方式，他的运行速度相比Perl 5慢了不少。这两个问题目前还没有非常完美的解决办法。</p>
-<p>虽然Perl 6还有一些问题，但是这不能掩盖Perl 6背后先进的设计思想和更丰富好用的语法所带来的便利。在Perl 6还没有发布前，我们可以通过安装Rakudo和MoarVM（JVM/ParrotVM）来体验和学习一下Perl 6。</p>
-<h1 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h1><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>对于windows用户，可以去这个页面下载适合的安装程序（.msi）</p>
-<p><a href="http://rakudo.org/downloads/star/" target="_blank" rel="external">http://rakudo.org/downloads/star/</a></p>
-<h2 id="Mac-OS-X"><a href="#Mac-OS-X" class="headerlink" title="Mac OS X"></a>Mac OS X</h2><p>对于Mac用户，最好的方法就是用Homebrew。如果你已经装了，那么就可以通过下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install rakudo-star</div></pre></td></tr></table></figure>
-<p>可以使用命令查看一下我们安装的Perl 6的版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ perl6 --version</div><div class="line">This is perl6 version 2015.09 built on MoarVM version 2015.09</div></pre></td></tr></table></figure>
-<p>根据我自己的经验，这个rakudo的版本已经更新到了基于MoarVM的2015.9，已经是非常新的版本了。如果你的版本比我的还要新，那么恭喜你。</p>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>在Linux上主要有两种方法来安装Perl 6。</p>
-<h3 id="从库中自动安装（建议）"><a href="#从库中自动安装（建议）" class="headerlink" title="从库中自动安装（建议）"></a>从库中自动安装（建议）</h3><p>如果你是初学者，我强烈建议采用这一种安装方法。</p>
-<ul>
-<li>Debian/Ubuntu/LinuxMint</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install rakudo</div></pre></td></tr></table></figure>
-<ul>
-<li>Fedora/Red Hat/Cent OS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install rakudo</div></pre></td></tr></table></figure>
-<p>一句话就解决了，省心。照例看一下版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ perl6 --version</div><div class="line">This is perl6 version 2013.12 built on parrot 5.9.0 revision 0</div></pre></td></tr></table></figure>
-<p>我用的是LinuxMint 17.3。这里安装的版本是基于parrot的2013.12，比Mac上的版本要低一些，但是功能上该有的也基本都有了，所以问题不大。</p>
-<p>如果你特别在意版本的问题，想要用到最新的版本，也有办法，可以自己编译源码。但是非常不建议没有经验的新手尝试。</p>
-<h3 id="从源码编译安装（慎重）"><a href="#从源码编译安装（慎重）" class="headerlink" title="从源码编译安装（慎重）"></a>从源码编译安装（慎重）</h3><p>首先，从源码编译安装要求</p>
-<ul>
-<li>Perl 5.8 or newer (这个基本不会有问题)</li>
-<li>git</li>
-<li>make</li>
-<li>gcc<br>对于后三个，如果没有的话需要自己安装。建议采用<code>sudo apt-get install</code>的方法。</li>
-</ul>
-<p>其次，我们需要用到一个小工具叫<a href="https://github.com/tadzik/rakudobrew" target="_blank" rel="external">rakudobrew</a>。利用这个小工具，可以让我们很方便的下载并安装最新的rakudo。安装这个小工具需要下面三条命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/tadzik/rakudobrew ~/.rakudobrew</div><div class="line">$ <span class="built_in">echo</span> ‘<span class="built_in">export</span> PATH=~/.rakudobrew/bin:<span class="variable">$PATH</span>’ &gt;&gt; ~/bashrc</div><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
-<p>如果没有什么错误信息的话，就表示rakudobrew已经装好啦。<br>下面就可以用这条命令安装Rakudo了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rakudobrew build moar</div></pre></td></tr></table></figure>
-<p>经过将近十分钟的等待和屏幕上眼花缭乱的安装信息之后，Rakudo和MoarVM已经成功装好了。这时候再查看版本信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ perl6 --version</div><div class="line">This is raked version 2015.11-416-g328e95e built on MoarVM version 2015.11-34-gc3eea17 implementation Perl v6.b</div></pre></td></tr></table></figure>
-<p>不错吧，已经更新到2015年11月的某个基于MoarVM的版本了。版本控么应该可以开心了吧。过了一段时间后如果希望升级到最新的版本，就再运行一次这个命令就可以了。</p>
-<p>如果想要更新rakudobrew本身，可以用下面这个命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rakudobrew self-upgrade</div></pre></td></tr></table></figure>
-<p>除了Rakudo以外呢，还推荐大家装一个小工具叫Panda。名字取的挺好的，就是熊猫。这个是专门为Perl 6用来安装Perl模块的工具。用下面的命令就可以装上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rakudobrew build-panda</div></pre></td></tr></table></figure>
-<p>装上以后，我们来尝试装一个模块，叫Task::Star</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ panda install Task::Star</div></pre></td></tr></table></figure>
-<p>这个命令可以一键帮你装好所有常用的Perl 6的模块，就不用等到需要的时候再一个个去找去安装了。</p>
-<p>另外需要补充的是，rakudobrew的方法也同样可以用在Mac OS X上，步骤也是一样的。这样也可以为你的Mac装上最新的Perl 6版本。</p>
-<p>这样，我们就装好了Perl 6。</p>
-<h1 id="第一个Perl-6程序"><a href="#第一个Perl-6程序" class="headerlink" title="第一个Perl 6程序"></a>第一个Perl 6程序</h1><p>我们可以试着用Perl 6来写一个最简单的程序：Hello World</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ perl6</div><div class="line">&gt;<span class="keyword">say</span> “Hello World”</div><div class="line">Hello World</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+            <p>Given a binary tree, return the preorder traversal of its nodes’ values.</p>
+<p>For example:<br>Given binary tree <code>{1,#,2,3}</code>,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   1</div><div class="line">    \</div><div class="line">     2</div><div class="line">    /</div><div class="line">   3</div><div class="line"></div><div class="line">return [1,2,3].</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong> Recursive solution is trivial, could you do it iteratively?</p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Recursive solution is very basic. Iterative solution requires a stack to record the nodes that have unvisited right child.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * struct TreeNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     TreeNode *left;</span></div><div class="line"><span class="comment"> *     TreeNode *right;</span></div><div class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rst;</div><div class="line">        preorder(root, rst);</div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode * node, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; rst)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">if</span> (node)</div><div class="line">        &#123;</div><div class="line">            rst.push_back(node -&gt; val);</div><div class="line">            preorder(node -&gt; left, rst);</div><div class="line">            preorder(node -&gt; right, rst);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="Solution-C-1"><a href="#Solution-C-1" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * struct TreeNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     TreeNode *left;</span></div><div class="line"><span class="comment"> *     TreeNode *right;</span></div><div class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rst;</div><div class="line">        <span class="built_in">stack</span>&lt;TreeNode *&gt; path;</div><div class="line">        </div><div class="line">        TreeNode * node = root;</div><div class="line">        <span class="keyword">if</span> (!root)</div><div class="line">            <span class="keyword">return</span> rst;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</div><div class="line">        &#123;</div><div class="line">            rst.push_back(node -&gt; val);</div><div class="line">            <span class="keyword">if</span> (node -&gt; left &amp;&amp; node -&gt; right)  <span class="comment">// Push it to stack only when it has both left and right child</span></div><div class="line">            &#123;</div><div class="line">                path.push(node);</div><div class="line">                node = node -&gt; left;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (node -&gt; left)</div><div class="line">                    node = node -&gt; left;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (node -&gt; right)</div><div class="line">                    node = node -&gt; right;</div><div class="line">                <span class="keyword">else</span></div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">if</span> (!path.empty())</div><div class="line">                    &#123;</div><div class="line">                        node = path.top() -&gt; right;  <span class="comment">// It must have right child</span></div><div class="line">                        path.pop();</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span></div><div class="line">                        <span class="keyword">return</span> rst;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/11/46/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shuanglong Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DD's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/11/46/" itemprop="url">Leetcode 46</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T08:09:28-04:00">
+                2017-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Leetcode-46-Permutations"><a href="#Leetcode-46-Permutations" class="headerlink" title="Leetcode 46. Permutations"></a>Leetcode 46. Permutations</h1><p> Given a collection of <strong>distinct</strong> numbers, return all possible permutations.</p>
+<p>For example,</p>
+<p><code>[1,2,3]</code> have the following permutations:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [1,2,3],</div><div class="line">  [1,3,2],</div><div class="line">  [2,1,3],</div><div class="line">  [2,3,1],</div><div class="line">  [3,1,2],</div><div class="line">  [3,2,1]</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>This can be solved recursively. All permutations is consist of the combination of each element with the permutation of the rest.</p>
+<h2 id="Solution-C"><a href="#Solution-C" class="headerlink" title="Solution (C++)"></a>Solution (C++)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; permute(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; rst;</div><div class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>)  <span class="comment">// base case, return the vector with one item</span></div><div class="line">        &#123;</div><div class="line">            rst.push_back(nums);</div><div class="line">            <span class="keyword">return</span> rst;</div><div class="line">        &#125;</div><div class="line">               </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)  <span class="comment">// for each element in the vector</span></div><div class="line">        &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sub = nums;</div><div class="line">            sub.erase(sub.begin() + i);  <span class="comment">// the vector of rest element</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; vec : permute(sub))  <span class="comment">// combine the chosen element and the permutation of rest</span></div><div class="line">            &#123;</div><div class="line">                vec.push_back(nums[i]);</div><div class="line">                rst.push_back(vec);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> rst;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
           
         
       
@@ -689,6 +1517,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -732,7 +1564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
